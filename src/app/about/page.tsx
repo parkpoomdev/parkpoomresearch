@@ -326,6 +326,26 @@ export default function About() {
             </Column>
           )}
 
+          {aboutData.studies.display && (
+            <>
+              <Heading as="h2" id={aboutData.studies.title} variant="display-strong-s" marginBottom="m">
+                {aboutData.studies.title}
+              </Heading>
+              <Column fillWidth gap="l" marginBottom="40">
+                {aboutData.studies.institutions.map((institution, index) => (
+                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
+                    <Text id={institution.name} variant="heading-strong-l">
+                      {institution.name}
+                    </Text>
+                    <Text variant="heading-default-xs" onBackground="neutral-weak">
+                      {institution.description}
+                    </Text>
+                  </Column>
+                ))}
+              </Column>
+            </>
+          )}
+
           {aboutData.work.display && (
             <>
               <Heading as="h2" id={aboutData.work.title} variant="display-strong-s" marginBottom="m">
@@ -379,26 +399,6 @@ export default function About() {
                         ))}
                       </Row>
                     )}
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
-
-          {aboutData.studies.display && (
-            <>
-              <Heading as="h2" id={aboutData.studies.title} variant="display-strong-s" marginBottom="m">
-                {aboutData.studies.title}
-              </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-                {aboutData.studies.institutions.map((institution, index) => (
-                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
-                    <Text id={institution.name} variant="heading-strong-l">
-                      {institution.name}
-                    </Text>
-                    <Text variant="heading-default-xs" onBackground="neutral-weak">
-                      {institution.description}
-                    </Text>
                   </Column>
                 ))}
               </Column>
