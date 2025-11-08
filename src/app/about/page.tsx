@@ -12,42 +12,168 @@ import {
   Schema,
   Row,
 } from "@once-ui-system/core";
-import { baseURL, about, person, social } from "@/resources";
+import { baseURL, about, person as defaultPerson, social } from "@/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import React from "react";
 
 export async function generateMetadata() {
+  const title = "About — Parkpoom Wisedsri";
+  const description =
+    "Meet Parkpoom Wisedsri, a doctoral student and research assistant focusing on AI, data science, and telehealth.";
   return Meta.generate({
-    title: about.title,
-    description: about.description,
+    title,
+    description,
     baseURL: baseURL,
-    image: `/api/og/generate?title=${encodeURIComponent(about.title)}`,
+    image: `/api/og/generate?title=${encodeURIComponent(title)}`,
     path: about.path,
   });
 }
 
 export default function About() {
+  // Local override for About page only
+  const person = {
+    ...defaultPerson,
+    firstName: "Parkpoom",
+    lastName: "Wisedsri",
+    name: "Parkpoom Wisedsri",
+    role: "Doctoral Student / Research Assistant",
+    email: "parkpoom.wisedsri@gmail.com",
+    location: "Asia/Bangkok",
+    languages: ["English", "Thai"],
+    avatar:
+      "/559016800_122152616930780211_5274130752568708793_n.png",
+  };
+  const aboutData = {
+    ...about,
+    title: "About — Parkpoom Wisedsri",
+    description:
+      "Meet Parkpoom Wisedsri, a doctoral student and research assistant focusing on AI, data science, and telehealth.",
+    intro: {
+      display: true,
+      title: "Introduction",
+      description: (
+        <>
+          Parkpoom is a doctoral student and research assistant at the Department of Information
+          and Communication Technology, Asian Institute of Technology (AIT). His research focuses on
+          AI and data science for telehealth monitoring and assistive systems supporting elderly and
+          disabled people.
+        </>
+      ),
+    },
+    work: {
+      display: true,
+      title: "Work Experience",
+      experiences: [
+        {
+          company: "Asian Institute of Technology (AIT)",
+          timeframe: "May 2023 – Present",
+          role: "Research Assistant (ICT / AI / Data Science)",
+          achievements: [
+            <>Telehealth Monitoring and Assistive Systems for Elderly and Disabled People.</>,
+            <>Applied AI and data analytics to support remote healthcare decision-making.</>,
+          ],
+        },
+        {
+          company: "Chulalongkorn University",
+          timeframe: "Feb 2023",
+          role: "Teaching Assistant (BAScii Program)",
+          achievements: [<>Supported teaching activities and student learning.</>],
+        },
+        {
+          company: "Brunel University London",
+          timeframe: "Aug – Oct 2022",
+          role: "Project Assistant (Web Developer OT Replacement)",
+          achievements: [<>Developed and maintained web features during staff transition.</>],
+        },
+        {
+          company: "Brunel University London",
+          timeframe: "Sep – Nov 2022",
+          role: "Graduate Teaching Assistant (GTA)",
+          achievements: [<>Assisted course delivery and student support.</>],
+        },
+        {
+          company: "Brunel University London",
+          timeframe: "Sep – Nov 2022",
+          role: "ResLife Ambassador",
+          achievements: [<>Supported residential life activities and student engagement.</>],
+        },
+        {
+          company: "Suranaree University of Technology",
+          timeframe: "Aug 2014 – Present",
+          role: "Laboratory Instructor (Study Leave)",
+          achievements: [<>Provided lab instruction and academic support.</>],
+        },
+      ],
+    },
+    studies: {
+      display: true,
+      title: "Studies",
+      institutions: [
+        {
+          name: "Asian Institute of Technology (AIT), Thailand",
+          description: <>Doctor of Engineering in Computer Science, 2023 – Present.</>,
+        },
+        {
+          name: "The University of Sheffield, United Kingdom",
+          description: <>M.Sc.Eng. in Computer Science, 2020.</>,
+        },
+        {
+          name: "Suranaree University of Technology, Thailand",
+          description: <>B.Eng. in Information Technology, 2014.</>,
+        },
+      ],
+    },
+    technical: {
+      display: true,
+      title: "Technical skills",
+      skills: [
+        {
+          title: "Research Interests",
+          description: <>Data analytics and visualization for telehealth applications.</>,
+        },
+        {
+          title: "Programming",
+          description: (
+            <>Database: SQL, NodeJS. Web: Python, NodeJS, JavaScript, PHP, C#, C++, ReactJS. Mobile:
+            Java (Android). UI/UX for software development.</>
+          ),
+          tags: [
+            { name: "SQL" },
+            { name: "NodeJS" },
+            { name: "Python" },
+            { name: "JavaScript" },
+            { name: "PHP" },
+            { name: "C#" },
+            { name: "C++" },
+            { name: "ReactJS" },
+            { name: "Java (Android)" },
+            { name: "UI/UX" },
+          ],
+        },
+      ],
+    },
+  } as typeof about;
   const structure = [
     {
-      title: about.intro.title,
-      display: about.intro.display,
+      title: aboutData.intro.title,
+      display: aboutData.intro.display,
       items: [],
     },
     {
-      title: about.work.title,
-      display: about.work.display,
-      items: about.work.experiences.map((experience) => experience.company),
+      title: aboutData.work.title,
+      display: aboutData.work.display,
+      items: aboutData.work.experiences.map((experience) => experience.company),
     },
     {
-      title: about.studies.title,
-      display: about.studies.display,
-      items: about.studies.institutions.map((institution) => institution.name),
+      title: aboutData.studies.title,
+      display: aboutData.studies.display,
+      items: aboutData.studies.institutions.map((institution) => institution.name),
     },
     {
-      title: about.technical.title,
-      display: about.technical.display,
-      items: about.technical.skills.map((skill) => skill.title),
+      title: aboutData.technical.title,
+      display: aboutData.technical.display,
+      items: aboutData.technical.skills.map((skill) => skill.title),
     },
   ];
   return (
@@ -55,17 +181,17 @@ export default function About() {
       <Schema
         as="webPage"
         baseURL={baseURL}
-        title={about.title}
-        description={about.description}
-        path={about.path}
-        image={`/api/og/generate?title=${encodeURIComponent(about.title)}`}
+        title={aboutData.title}
+        description={aboutData.description}
+        path={aboutData.path}
+        image={`/api/og/generate?title=${encodeURIComponent(aboutData.title)}`}
         author={{
           name: person.name,
-          url: `${baseURL}${about.path}`,
+          url: `${baseURL}${aboutData.path}`,
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      {about.tableOfContent.display && (
+      {aboutData.tableOfContent.display && (
         <Column
           left="0"
           style={{ top: "50%", transform: "translateY(-50%)" }}
@@ -74,11 +200,11 @@ export default function About() {
           gap="32"
           s={{ hide: true }}
         >
-          <TableOfContents structure={structure} about={about} />
+          <TableOfContents structure={structure} about={aboutData} />
         </Column>
       )}
       <Row fillWidth s={{ direction: "column"}} horizontal="center">
-        {about.avatar.display && (
+        {aboutData.avatar.display && (
           <Column
             className={styles.avatar}
             top="64"
@@ -117,7 +243,7 @@ export default function About() {
             vertical="center"
             marginBottom="32"
           >
-            {about.calendar.display && (
+            {aboutData.calendar.display && (
               <Row
                 fitWidth
                 border="brand-alpha-medium"
@@ -135,7 +261,7 @@ export default function About() {
                 <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
                 <Row paddingX="8">Schedule a call</Row>
                 <IconButton
-                  href={about.calendar.link}
+                  href={aboutData.calendar.link}
                   data-border="rounded"
                   variant="secondary"
                   icon="chevronRight"
@@ -194,19 +320,19 @@ export default function About() {
             )}
           </Column>
 
-          {about.intro.display && (
+          {aboutData.intro.display && (
             <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="xl">
-              {about.intro.description}
+              {aboutData.intro.description}
             </Column>
           )}
 
-          {about.work.display && (
+          {aboutData.work.display && (
             <>
-              <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
-                {about.work.title}
+              <Heading as="h2" id={aboutData.work.title} variant="display-strong-s" marginBottom="m">
+                {aboutData.work.title}
               </Heading>
               <Column fillWidth gap="l" marginBottom="40">
-                {about.work.experiences.map((experience, index) => (
+                {aboutData.work.experiences.map((experience, index) => (
                   <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
                     <Row fillWidth horizontal="between" vertical="end" marginBottom="4">
                       <Text id={experience.company} variant="heading-strong-l">
@@ -259,13 +385,13 @@ export default function About() {
             </>
           )}
 
-          {about.studies.display && (
+          {aboutData.studies.display && (
             <>
-              <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
-                {about.studies.title}
+              <Heading as="h2" id={aboutData.studies.title} variant="display-strong-s" marginBottom="m">
+                {aboutData.studies.title}
               </Heading>
               <Column fillWidth gap="l" marginBottom="40">
-                {about.studies.institutions.map((institution, index) => (
+                {aboutData.studies.institutions.map((institution, index) => (
                   <Column key={`${institution.name}-${index}`} fillWidth gap="4">
                     <Text id={institution.name} variant="heading-strong-l">
                       {institution.name}
@@ -279,18 +405,18 @@ export default function About() {
             </>
           )}
 
-          {about.technical.display && (
+          {aboutData.technical.display && (
             <>
               <Heading
                 as="h2"
-                id={about.technical.title}
+                id={aboutData.technical.title}
                 variant="display-strong-s"
                 marginBottom="40"
               >
-                {about.technical.title}
+                {aboutData.technical.title}
               </Heading>
               <Column fillWidth gap="l">
-                {about.technical.skills.map((skill, index) => (
+                {aboutData.technical.skills.map((skill, index) => (
                   <Column key={`${skill}-${index}`} fillWidth gap="4">
                     <Text id={skill.title} variant="heading-strong-l">
                       {skill.title}
