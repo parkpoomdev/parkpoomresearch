@@ -49,6 +49,10 @@ export default function About() {
     title: "About — Parkpoom Wisedsri",
     description:
       "Meet Parkpoom Wisedsri, a doctoral student and research assistant focusing on AI, data science, and telehealth.",
+    calendar: {
+      display: false,
+      link: about.calendar.link,
+    },
     intro: {
       display: true,
       title: "Introduction",
