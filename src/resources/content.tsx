@@ -13,9 +13,9 @@ const person: Person = {
 };
 
 const newsletter: Newsletter = {
-  display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  display: false,
+  title: <></>,
+  description: <></>,
 };
 
 const social: Social = [
@@ -47,34 +47,15 @@ const home: Home = {
   path: "/",
   image: "/images/og/home.jpg",
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  title: "Parkpoom Wisedsri — Portfolio",
+  description: "Doctoral student and research assistant in AI, data science, and telehealth.",
+  headline: <>Doctoral student and research assistant in AI, data science, and telehealth</>,
   featured: {
-    display: true,
-    title: (
-      <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
-        <Line background="brand-alpha-strong" vert height="20" />
-        <Text marginRight="4" onBackground="brand-medium">
-          Featured work
-        </Text>
-      </Row>
-    ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    display: false,
+    title: <></>,
+    href: "/",
   },
-  subline: (
-    <>
-      I'm Selene, a design engineer at{" "}
-      <Logo
-        dark
-        icon="/trademarks/wordmark-dark.svg"
-        style={{ display: "inline-flex", top: "0.25em", marginLeft: "-0.25em" }}
-      />
-      , where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
-    </>
-  ),
+  subline: <>I’m Parkpoom Wisedsri. I work on AI- and data-driven telehealth systems at AIT, focusing on analytics, visualization, and assistive technologies.</>,
 };
 
 const about: About = {
