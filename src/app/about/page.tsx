@@ -41,8 +41,8 @@ export default function About() {
     email: "parkpoom.wisedsri@gmail.com",
     location: "Asia/Bangkok",
     languages: ["English", "Thai"],
-    // Use custom avatar image
-    avatar: "/images/avatar_temp.jpg",
+    // Use custom avatar image from home folder
+    avatar: "/images/home/avatar.jpg",
   };
   const aboutData = {
     ...about,
