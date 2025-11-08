@@ -17,7 +17,12 @@ export function Posts({
   exclude = [],
   direction,
 }: PostsProps) {
-  let allBlogs = getPosts(["src", "app", "blog", "posts"]);
+  let allBlogs = [] as ReturnType<typeof getPosts>;
+  try {
+    allBlogs = getPosts(["src", "app", "blog", "posts"]);
+  } catch (e) {
+    allBlogs = [];
+  }
 
   // Exclude by slug (exact match)
   if (exclude.length) {
